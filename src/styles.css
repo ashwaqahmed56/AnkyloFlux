@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+[data-theme='dark'] {
+  --color-base: #0e1013;
+  --color-surface: #16191d;
+  --color-elevated: #1f242a;
+  --color-overlay: rgba(12, 14, 16, 0.82);
+  --color-line: rgba(255, 255, 255, 0.14);
+  --color-ink: #f2f4f6;
+  --color-muted: #aeb5bd;
+  --color-faint: #79808a;
+}
+
+[data-theme='light'] {
+  --color-base: #f2f3f4;
+  --color-surface: #ffffff;
+  --color-elevated: #e6e8ea;
+  --color-overlay: rgba(242, 243, 244, 0.86);
+  --color-line: rgba(0, 0, 0, 0.14);
+  --color-ink: #141618;
+  --color-muted: #4e545c;
+  --color-faint: #767c85;
+}
+
+[data-accent='amber'] {
+  --color-accent: #e0a458;
+  --color-accent-dim: rgba(224, 164, 88, 0.16);
+}
+[data-accent='teal'] {
+  --color-accent: #57b8a2;
+  --color-accent-dim: rgba(87, 184, 162, 0.16);
+}
+[data-accent='gray'] {
+  --color-accent: #a39e97;
+  --color-accent-dim: rgba(163, 158, 151, 0.16);
+}
+[data-accent='rose'] {
+  --color-accent: #cf7f8e;
+  --color-accent-dim: rgba(207, 127, 142, 0.16);
+}
+
+/* Chrome drawn on top of the video surface is always dark: the video letterbox is
+   black in both themes, so light text is the only readable option there. Scoped
+   locally so panels, dialogs and the page itself still follow the theme. */
+.on-media {
+  --color-base: #0e1013;
+  --color-surface: #16191d;
+  --color-elevated: #1f242a;
+  --color-line: rgba(255, 255, 255, 0.16);
+  --color-ink: #f2f4f6;
+  --color-muted: #aeb5bd;
+  --color-faint: #8b929b;
+}
+
+.on-media-popover {
+  --color-line: rgba(255, 255, 255, 0.16);
+  --color-ink: #f2f4f6;
+  --color-muted: #aeb5bd;
+  --color-faint: #8b929b;
+  background: #1f242a;
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #f2f4f6;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-base);
+  color: var(--color-ink);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.28);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 128, 128, 0.45);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mono-time {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-feature-settings: 'tnum';
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes ankylo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ankylo-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ankylo-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ankylo-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes ankylo-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ankylo-toast {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ankylo-pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.anim-fade-up {
+  animation: ankylo-fade-up 0.18s ease both;
+}
+.anim-fade-in {
+  animation: ankylo-fade-in 0.15s ease both;
+}
+.anim-pop-in {
+  animation: ankylo-pop-in 0.16s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+.anim-slide-left {
+  animation: ankylo-slide-left 0.2s ease both;
+}
+.anim-toast {
+  animation: ankylo-toast 0.2s ease both;
+}
+.anim-spin {
+  animation: ankylo-spin 0.9s linear infinite;
+}
+@keyframes ankylo-ripple-side {
+  0% {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+  30% {
+    opacity: 0.95;
+    transform: scale(1.02);
+  }
+  80% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+}
+.anim-doubletap {
+  animation: ankylo-ripple-side 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button:focus-visible,
+[role='slider']:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}

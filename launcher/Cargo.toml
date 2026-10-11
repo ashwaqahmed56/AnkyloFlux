@@ -1,0 +1,23 @@
+[package]
+name = "ankylo-launcher"
+version = "0.1.0"
+edition = "2021"
+description = "Single-file self-extracting launcher for Ankylo"
+publish = false
+
+[[bin]]
+name = "ankylo-launcher"
+path = "src/main.rs"
+
+[dependencies]
+flate2 = "1"
+
+[build-dependencies]
+winres = "0.1"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
